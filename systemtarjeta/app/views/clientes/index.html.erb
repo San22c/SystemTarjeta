@@ -1,8 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Resumen Clientes</h1>
+<div class="jumbotron text-center">
+  <h1>SystemCard</h1>
+  <p> Enterprise Solutions</p>
+</div>
 
-<table>
+<div class="container">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Home</a>
+    </div>
+    <ul class="nav navbar-nav">
+       <li class="name"> 'CongressParticipant'</li>
+       <li class="name">'Sesiones'</li>
+       <li class="name">'Congresos'</li>
+    </ul>
+  </div>
+</nav>
+<table class="table table-striped">
+
   <thead>
     <tr>
       <th>Nombre</th>
@@ -26,7 +43,9 @@
 
         <td><%= link_to 'Ver', cliente %></td>
         <td><%= link_to 'Editar', edit_cliente_path(cliente) %></td>
+        <% if cliente.fecha_baja.blank?%>
         <td><%= link_to 'Baja',cliente_bajanormal_path(cliente), data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -35,3 +54,5 @@
 <br>
 
 <%= link_to 'Nuevo Cliente', new_cliente_path %>
+
+</div>

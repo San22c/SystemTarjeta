@@ -11,7 +11,7 @@ class ClientesController < ApplicationController
           @cliente.fecha_baja = Time.zone.today
           @cliente.save
           respond_to do |format|
-            format.html { redirect_to :back, notice: "El registro fue borrado" }
+            format.html { redirect_to :back}
             format.json { head :no_content }
           end
         end
