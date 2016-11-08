@@ -6,8 +6,7 @@ class ClientesController < ApplicationController
 
 
       def bajanormal
-        @cliente = Cliente.find(params[:cliente_id])
-
+          @cliente = Cliente.find(params[:cliente_id])
           @cliente.fecha_baja = Time.zone.today
           @cliente.save
           respond_to do |format|

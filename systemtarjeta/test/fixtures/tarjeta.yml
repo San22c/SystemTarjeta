@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  numref: MyString
+  puntos: 1
+  usuario_id: 
+
+two:
+  numref: MyString
+  puntos: 1
+  usuario_id: 

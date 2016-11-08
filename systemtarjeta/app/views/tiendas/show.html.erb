@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @tienda.nombre %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @tienda.descripcion %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @tienda.url %>
+</p>
+
+<p>
+  <strong>Fecha baja:</strong>
+  <%= @tienda.fecha_baja %>
+</p>
+
+<%= link_to 'Edit', edit_tienda_path(@tienda) %> |
+<%= link_to 'Back', tiendas_path %>

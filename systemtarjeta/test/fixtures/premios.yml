@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  concepto: MyString
+  stock: 1
+  puntos: 1
+  fecha_baja: 2016-11-07 21:35:10
+
+two:
+  concepto: MyString
+  stock: 1
+  puntos: 1
+  fecha_baja: 2016-11-07 21:35:10

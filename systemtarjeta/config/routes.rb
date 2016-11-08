@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
+  resources :tiendas
+  get 'welcome_sys_t/index'
+
+  resources :premios
+  resources :tarjeta
+  resources :usuarios
   resources :clientes
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'clientes#index'
-
+   root 'welcome_sys_t#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
