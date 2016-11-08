@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :tiendas
   get 'welcome_sys_t/index'
-
+  get 'inicio_usuario/index'
   resources :premios
   resources :tarjeta
   resources :usuarios
