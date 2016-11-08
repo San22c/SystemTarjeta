@@ -1,0 +1,164 @@
+<head>    <title>New Age - Start Bootstrap Theme</title>
+
+
+      <!-- Bootstrap Core CSS -->
+      <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+      <!-- Custom Fonts -->
+      <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+      <!-- Plugin CSS -->
+      <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+      <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
+      <link rel="stylesheet" href="vendor/device-mockups/device-mockups.min.css">
+
+      <!-- Theme CSS -->
+      <link href="css/new-age.min.css" rel="stylesheet">
+
+
+<style>
+      .background_image {
+          background: url('/assets/indexFondo.PNG');
+
+
+      }
+      .jumbotron{background:transparent;}
+
+</style>
+</head>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">RegalosPorqueSi!</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="active"><%= link_to "Home", root_path %> </li>
+      <li><% if current_user %>
+    Welcome <%= link_to current_user.email, edit_user_registration_path %></li> <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+<% else %>
+  <li>  <%= link_to 'Login', new_user_session_path %></li>
+<% end %>
+<li><a href="#">Contacto</a></li>
+<li><a href="#">Ayuda</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+<h1>Hola <%= current_user.nombre %></h1>
+<h2>¿Que quieres hacer?</h2>
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+        Mi Perfil</a>
+      </h4>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Direccion</th>
+        <th>Telefono</th>
+        <th>Email</th>
+
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+        <tr>
+          <td><%= current_user.nombre %></td>
+          <td><%= current_user.apellidos %></td>
+          <td><%= current_user.direccion %></td>
+          <td><%= current_user.telefono %></td>
+          <td><%= current_user.email %></td>
+
+        </tr>
+
+    </tbody>
+  </table>
+  <%= link_to 'Editar perfil', edit_user_registration_path %>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+       Mi tarjeta</a>
+
+      </h4>
+    </div>
+    <div id="collapse2" class="panel-collapse collapse">
+      <div class="panel-body">- Dar de bajan
+      - Alta tarjeta
+      - Datos Tarjeta</div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+       Mis Premios</a>
+      </h4>
+    </div>
+    <div id="collapse3" class="panel-collapse collapse">
+      <div class="panel-body">
+      -Listado de premios conseguidos</div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+        Consultar Movimientos</a>
+      </h4>
+    </div>
+    <div id="collapse4" class="panel-collapse collapse">
+      <div class="panel-body">Mvimientos
+      - Excel</div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2016 Grupo13.</p>
+            <ul class="list-inline">
+                <li>
+                    <a href="#">Privacy</a>
+                </li>
+                <li>
+                    <a href="#">Terms</a>
+                </li>
+                <li>
+                    <a href="#">FAQ</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/new-age.min.js"></script>

@@ -1,6 +1,18 @@
 class TarjetaController < ApplicationController
   before_action :set_tarjetum, only: [:show, :edit, :update, :destroy]
 
+
+  def bajanormal
+      @tarjeta = Tarjeta.find(params[:tarjeta_id])
+      @tarjeta.fecha_baja = Time.zone.today
+      @tarjeta.save
+      respond_to do |format|
+        format.html { redirect_to :back}
+        format.json { head :no_content }
+      end
+    end
+
+
   # GET /tarjeta
   # GET /tarjeta.json
   def index

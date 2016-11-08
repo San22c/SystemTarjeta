@@ -35,11 +35,14 @@
       <a class="navbar-brand" href="#">RegalosPorqueSi!</a>
     </div>
     <ul class="nav navbar-nav navbar-right">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      <li><a href="#">Contacto</a></li>
-      <li><a href="#">Ayuda</a></li>
+      <li class="active"><%= link_to "Home", root_path %> </li>
+      <li><% if current_user %>
+    Welcome <%= link_to current_user.email, inicio_usuario_index_path %></li> <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+<% else %>
+  <li>  <%= link_to 'Login', new_user_session_path %></li>
+<% end %>
+<li><a href="#">Contacto</a></li>
+<li><a href="#">Ayuda</a></li>
     </ul>
   </div>
 </nav>
@@ -58,7 +61,7 @@
                   <nav class="navbar navbar-inverse">
                     <div class="container-fluid">
                       <div class="navbar-header">
-                        <a class="navbar-brand" href="#">RegalosPorqueSi!</a>
+                        <%= link_to "Home", root_path %>
                       </div>
                       <ul class="nav navbar-nav">
                       <li class="text-center">  <%= link_to "Premios", premios_path %></li>
@@ -183,7 +186,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2016 Start Bootstrap. All Rights Reserved.</p>
+          <p>&copy; 2016 Grupo13.</p>
             <ul class="list-inline">
                 <li>
                     <a href="#">Privacy</a>
