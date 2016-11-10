@@ -1,0 +1,44 @@
+<table class="table table-striped">  <thead>
+    <tr>
+      <th>NumeroReferencia</th>
+      <th>Puntos</th>
+      <th>Fecha Creacion</th>
+      <th>Fecha Baja</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% tarjets = Tarjetum.where(user_id: user.id) %>
+<% tarjets.each do |tarj| %>
+<tr>      <td><%= tarj.numref %></td>
+      <td><%= tarj.puntos %></td>
+      <td><%= tarj.created_at %></td>
+      <td><%= tarj.fecha_baja %></td>
+      <td>
+    </td></tr>
+
+  </tbody>
+</table>
+<% if tarj.fecha_baja == nil %>
+<div class="container">
+  <div class="panel-group">
+<div class="panel panel-danger">
+      <div class="panel-heading">¿Quieres cancelar tu Tarjeta?</div>
+      <div class="panel-body">
+
+<%= render "almacenbajas/form" %>
+</div>
+  </div>
+</div>
+  </div>
+
+<% else %>
+<td><%= link_to "Activar",  tarjetum_activar_path(tarj) , data: { confirm: '¿Seguro que desea activar la tarjeta?'} %></td>
+</div>
+  </div>
+</div>
+  </div>
+
+<% end %>
+<% end %>

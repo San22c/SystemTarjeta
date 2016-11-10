@@ -1,0 +1,10 @@
+<%= form_for Almacenbaja.new do |f| %>
+  <div class="field">
+    <%= f.label :motivo_id %><br>
+     <%= f.collection_select :motivo_id, Motivo.all, :id, :denom, prompt: true %>
+   </div>
+
+  <div class="actions">
+    <%= f.submit 'Dar de Baja'%>
+  </div>
+<% end %>

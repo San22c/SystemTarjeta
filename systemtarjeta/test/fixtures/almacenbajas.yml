@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  motivo_id: 
+  user_id: 
+  tarjetum_id: 
+
+two:
+  motivo_id: 
+  user_id: 
+  tarjetum_id: 

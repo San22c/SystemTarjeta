@@ -11,4 +11,10 @@ class ApplicationController < ActionController::Base
               devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:rol,:nombre, :email, :password, :current_password, :apellidos, :telefono, :direccion) }
               devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:rol,:nombre, :email, :password, :current_password, :apellidos, :telefono, :direccion) }
           end
+
+          before_filter :set_current_user
+
+def set_current_user
+  Almacenbaja.current_user = current_user
+end
   end

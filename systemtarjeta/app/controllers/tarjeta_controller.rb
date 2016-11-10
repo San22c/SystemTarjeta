@@ -11,6 +11,16 @@ class TarjetaController < ApplicationController
         format.json { head :no_content }
       end
     end
+    def activar
+
+        @tarjeta = Tarjetum.find(params[:tarjetum_id])
+        @tarjeta.fecha_baja = nil
+          @tarjeta.save
+          respond_to do |format|
+            format.html { redirect_to :back, notice: "La tarjeta fue activada correctamente" }
+            format.json { head :no_content }
+          end
+      end
 
 
   # GET /tarjeta

@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161108201005) do
+ActiveRecord::Schema.define(version: 20161109230907) do
+
+  create_table "almacenbajas", force: :cascade do |t|
+    t.integer  "motivo_id",   limit: 4
+    t.integer  "user_id",     limit: 4
+    t.integer  "tarjetum_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "almacenbajas", ["motivo_id"], name: "index_almacenbajas_on_motivo_id", using: :btree
+  add_index "almacenbajas", ["tarjetum_id"], name: "index_almacenbajas_on_tarjetum_id", using: :btree
+  add_index "almacenbajas", ["user_id"], name: "index_almacenbajas_on_user_id", using: :btree
 
   create_table "clientes", force: :cascade do |t|
     t.string   "nombre",     limit: 255
@@ -21,6 +33,12 @@ ActiveRecord::Schema.define(version: 20161108201005) do
     t.string   "telefono",   limit: 255
     t.string   "email",      limit: 255
     t.date     "fecha_baja"
+  end
+
+  create_table "motivos", force: :cascade do |t|
+    t.string   "denom",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "premios", force: :cascade do |t|
@@ -43,12 +61,13 @@ ActiveRecord::Schema.define(version: 20161108201005) do
   create_table "tarjeta", force: :cascade do |t|
     t.string   "numref",     limit: 255
     t.integer  "puntos",     limit: 4
-    t.integer  "usuario_id", limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "user_id",    limit: 4
+    t.date     "fecha_baja"
   end
 
-  add_index "tarjeta", ["usuario_id"], name: "index_tarjeta_on_usuario_id", using: :btree
+  add_index "tarjeta", ["user_id"], name: "index_tarjeta_on_user_id", using: :btree
 
   create_table "tiendas", force: :cascade do |t|
     t.string   "nombre",      limit: 255
@@ -95,5 +114,8 @@ ActiveRecord::Schema.define(version: 20161108201005) do
     t.date     "fecha_baja"
   end
 
-  add_foreign_key "tarjeta", "usuarios"
+  add_foreign_key "almacenbajas", "motivos"
+  add_foreign_key "almacenbajas", "tarjeta"
+  add_foreign_key "almacenbajas", "users"
+  add_foreign_key "tarjeta", "users"
 end

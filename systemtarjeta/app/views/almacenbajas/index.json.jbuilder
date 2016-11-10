@@ -1,0 +1,1 @@
+json.array! @almacenbajas, partial: 'almacenbajas/almacenbaja', as: :almacenbaja

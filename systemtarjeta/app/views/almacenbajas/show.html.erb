@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Motivo:</strong>
+  <%= @almacenbaja.motivo %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @almacenbaja.user %>
+</p>
+
+<p>
+  <strong>Tarjetum:</strong>
+  <%= @almacenbaja.tarjetum %>
+</p>
+
+<%= link_to 'Edit', edit_almacenbaja_path(@almacenbaja) %> |
+<%= link_to 'Back', almacenbajas_path %>

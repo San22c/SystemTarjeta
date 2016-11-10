@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
+  resources :almacenbajas
   devise_for :users
   resources :tiendas
   get 'welcome_sys_t/index'
   get 'inicio_usuario/index'
   resources :premios
-  resources :tarjeta
+  resources :tarjeta do
+  get :activar
+
+end
   resources :usuarios
   resources :clientes
+  resources :motivos
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
