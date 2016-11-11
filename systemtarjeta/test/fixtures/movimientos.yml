@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  tarjetum_id: 
+  importe: 9.99
+  puntos: 1
+  premio_id: 
+
+two:
+  user_id: 
+  tarjetum_id: 
+  importe: 9.99
+  puntos: 1
+  premio_id: 

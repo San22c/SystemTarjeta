@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161109230907) do
+ActiveRecord::Schema.define(version: 20161110164710) do
 
   create_table "almacenbajas", force: :cascade do |t|
     t.integer  "motivo_id",   limit: 4
@@ -40,6 +40,20 @@ ActiveRecord::Schema.define(version: 20161109230907) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "movimientos", force: :cascade do |t|
+    t.integer  "user_id",     limit: 4
+    t.integer  "tarjetum_id", limit: 4
+    t.decimal  "importe",               precision: 10
+    t.integer  "puntos",      limit: 4
+    t.integer  "premio_id",   limit: 4
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "movimientos", ["premio_id"], name: "index_movimientos_on_premio_id", using: :btree
+  add_index "movimientos", ["tarjetum_id"], name: "index_movimientos_on_tarjetum_id", using: :btree
+  add_index "movimientos", ["user_id"], name: "index_movimientos_on_user_id", using: :btree
 
   create_table "premios", force: :cascade do |t|
     t.string   "concepto",   limit: 255
@@ -117,5 +131,8 @@ ActiveRecord::Schema.define(version: 20161109230907) do
   add_foreign_key "almacenbajas", "motivos"
   add_foreign_key "almacenbajas", "tarjeta"
   add_foreign_key "almacenbajas", "users"
+  add_foreign_key "movimientos", "premios"
+  add_foreign_key "movimientos", "tarjeta"
+  add_foreign_key "movimientos", "users"
   add_foreign_key "tarjeta", "users"
 end
