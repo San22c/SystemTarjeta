@@ -10,7 +10,13 @@
 
   <tbody>
     <% tarjets = Tarjetum.where(user_id: user.id) %>
-<% tarjets.each do |tarj| %>
+
+<% if tarjets.size  <= 0%>
+<td><%= link_to "Activar Tarjeta",  tarjetum_nueva_tarjeta_path(1), :class =>'btn btn-success', data: { confirm: '¿Seguro que desea activar la tarjeta?'} %></td>
+
+ <% end %>
+
+ <% tarjets.each do |tarj| %>
 <tr>      <td><%= tarj.numref %></td>
       <td><%= tarj.puntos %></td>
       <td><%= tarj.created_at %></td>
@@ -20,25 +26,39 @@
 
   </tbody>
 </table>
-<% if tarj.fecha_baja == nil %>
-<div class="container">
-  <div class="panel-group">
-<div class="panel panel-danger">
-      <div class="panel-heading">¿Quieres cancelar tu Tarjeta?</div>
-      <div class="panel-body">
 
-<%= render "almacenbajas/form" %>
-</div>
+
+<% if tarj.fecha_baja == nil %>
+
+<!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Baja Tarjeta</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Formulario Baja</h4>
+      </div>
+      <div class="modal-body">
+        <p>Selecciona el motivo de la baja</p>
+        <%= render "almacenbajas/form" %>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+
   </div>
 </div>
-  </div>
 
 <% else %>
-<td><%= link_to "Activar",  tarjetum_activar_path(tarj) , data: { confirm: '¿Seguro que desea activar la tarjeta?'} %></td>
-</div>
-  </div>
-</div>
-  </div>
+<td><%= link_to "Activar",  tarjetum_activar_path(tarj), :class =>'btn btn-success', data: { confirm: '¿Seguro que desea activar la tarjeta?'} %></td>
 
-<% end %>
+  <% end %>
+
 <% end %>

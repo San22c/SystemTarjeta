@@ -3,8 +3,8 @@
     <%= f.label :motivo_id %><br>
      <%= f.collection_select :motivo_id, Motivo.all, :id, :denom, prompt: true %>
    </div>
-
+<br/>
   <div class="actions">
-    <%= f.submit 'Dar de Baja'%>
+    <%= f.submit 'Dar de Baja' ,:class =>'btn btn-danger' %>
   </div>
 <% end %>

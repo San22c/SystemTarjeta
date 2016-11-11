@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :movimientos
   resources :almacenbajas
   devise_for :users
   resources :tiendas
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
   resources :premios
   resources :tarjeta do
   get :activar
+  get :nueva_tarjeta
 
 end
   resources :usuarios

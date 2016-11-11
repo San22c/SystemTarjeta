@@ -12,7 +12,6 @@ class TarjetaController < ApplicationController
       end
     end
     def activar
-
         @tarjeta = Tarjetum.find(params[:tarjetum_id])
         @tarjeta.fecha_baja = nil
           @tarjeta.save
@@ -23,12 +22,32 @@ class TarjetaController < ApplicationController
       end
 
 
+
   # GET /tarjeta
   # GET /tarjeta.json
   def index
     @tarjeta = Tarjetum.all
   end
+  def nueva_tarjeta
+    @tarjetum = Tarjetum.new
+    @tarjetum.user_id = current_user.id
+    @tarjetum.puntos = 0
 
+    email_user = current_user.email
+    telefono_user = current_user.telefono
+    emails = email_user[1,4]
+    telefono = telefono_user[2,4]
+
+    @tarjetum.numref =  emails + telefono
+     respond_to do |format|
+      if @tarjetum.save
+        format.html { redirect_to @tarjetum, notice: 'La tarjeta se activo correctamente.' }
+       else
+        format.html { render :new }
+        format.json { render json: @tarjetum.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   # GET /tarjeta/1
   # GET /tarjeta/1.json
   def show
@@ -37,6 +56,7 @@ class TarjetaController < ApplicationController
   # GET /tarjeta/new
   def new
     @tarjetum = Tarjetum.new
+
   end
 
   # GET /tarjeta/1/edit

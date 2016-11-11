@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @movimiento.user %>
+</p>
+
+<p>
+  <strong>Tarjetum:</strong>
+  <%= @movimiento.tarjetum %>
+</p>
+
+<p>
+  <strong>Importe:</strong>
+  <%= @movimiento.importe %>
+</p>
+
+<p>
+  <strong>Puntos:</strong>
+  <%= @movimiento.puntos %>
+</p>
+
+<p>
+  <strong>Premio:</strong>
+  <%= @movimiento.premio %>
+</p>
+
+<%= link_to 'Edit', edit_movimiento_path(@movimiento) %> |
+<%= link_to 'Back', movimientos_path %>
