@@ -41,7 +41,10 @@ class TarjetaController < ApplicationController
     @tarjetum.numref =  emails + telefono
      respond_to do |format|
       if @tarjetum.save
-        format.html { redirect_to @tarjetum, notice: 'La tarjeta se activo correctamente.' }
+
+        ActionCorreo.sample_email(current_user).deliver
+        format.html { redirect_to root_path, notice: 'La tarjeta se activo correctamente.' }
+
        else
         format.html { render :new }
         format.json { render json: @tarjetum.errors, status: :unprocessable_entity }
