@@ -25,6 +25,16 @@
 
 
 <style>
+
+.well  {
+      border-radius: 25px;
+       padding: 20px;
+       border: 2px solid #73AD21;
+
+
+
+}
+
       .background_image {
           background: url('/assets/indexFondo.PNG');
 
@@ -35,18 +45,29 @@
 </style>
 </head>
 
-<nav class="navbar navbar-default">
+
+
+
+
+<nav class="navbar   navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">RegalosPorqueSi!</a>
+      <a class="navbar-brand" href="#">Points4All</a>
     </div>
     <ul class="nav navbar-nav navbar-right">
       <li class="active"><%= link_to "Home", root_path %> </li>
-      <li><% if current_user %>
-    Welcome <%= link_to current_user.email, inicio_usuario_index_path %></li> <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+      <% if current_user %>
+
+    <li>   <%= link_to 'Welcome ' + current_user.nombre, inicio_usuario_index_path %></li>
+    <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
 <% else %>
   <li>  <%= link_to 'Login', new_user_session_path %></li>
 <% end %>
+<% if current_user.rol = 'admin'%>
+<li class="active"><%= link_to "Panel Admin", root_path %> </li>
+
+<%end%>
+
 <li><a href="#">Contacto</a></li>
 <li><a href="#">Ayuda</a></li>
     </ul>
@@ -56,31 +77,55 @@
         <div class="background_image">
           <div class="container">
             <div class="jumbotron">
-              <h1>RegalosPorqueSi!</h1>
-              <p>Bienvenido a RegalosPorqueSi! Convierte tus compras en regalos
-              sin coste adicional.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
             </div>
-            <p>This is some text.</p>
-            <p>This is another text.</p>
+
           </div>
-
-                  <nav class="navbar navbar-inverse">
-                    <div class="container-fluid">
-                      <div class="navbar-header">
-                        <%= link_to "Home", root_path %>
-                      </div>
-                      <ul class="nav navbar-nav">
-                      <li class="text-center">  <%= link_to "Premios", premios_path %></li>
-                        <li class="text-center"><%= link_to "Tiendas adheridas", tiendas_path %></li>
-                        <li class="text-center"><%= link_to "¿Porque unirte?", premios_path %></li>
-                      </ul>
-                    </div>
-                  </nav>
-
-
     </div>
+    <br/>
 
+    <div class="container">
+      <div class="well well-sm">
+      <ul class="nav nav-pills nav-justified" data-tabs id="example-tabs">
+      <li class="tabs-title is-active"><a href="#panel1">Home</a></li>
+      <li class="tabs-title"><a href="#panel2">Tiendas Adheridas</a></li>
+      <li class="tabs-title"><a href="#panel3">Premios</a></li>
+      <li class="tabs-title"><a href="#panel3">Noticias</a></li>
 
+    </ul>
+</div>
+    <div class="tabs-content" data-tabs-content="example-tabs">
+      <div class="tabs-panel is-active" id="panel2">
+        <%= render "tiendas/index", user: current_user %>
+
+      </div>
+      <div class="tabs-panel" id="panel3">
+        <%= render "premios/index", user: current_user %>
+
+      </div>
+
+      <div class="tabs-panel" id="panel3">
+      </div>
+
+      </div>
+    </div>
+    </div>
 
 
     <section id="download" class="download bg-primary text-center">

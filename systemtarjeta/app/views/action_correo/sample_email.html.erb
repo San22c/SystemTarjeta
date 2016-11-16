@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <div class="container">
+  <div class="jumbotron">
+    <h1>¡Bienvenido <%= @user.nombre %>!</h1>
+    <% card = Tarjetum.find_by(user_id: @user.id)%>
+    <h1>Numero Tarjeta <%= card.numref %>!</h1>
+
+
+       <ol type="1">
+
+         <li>ACUMULA PUNTOS: Introduce tu numero de tarjeta al realizar una compra el cualquiera de nuestras tiendas
+           asociadas.</li>
+         <li>CANJEA PUNTOS POR REGALOS: Podras disfrutar de una selección de fantásticos premios.</li>
+         <li>RECIBIR NOVEDADES: Recibiras nuestras novedades e informacion sobre tus compras.</li>
+       </ol>
+
+
+
+       Gracias por unirte a Points4All.
+       Saludos.
+
+</div>
+   </div>
+
+
+
+  </body>
+</html>

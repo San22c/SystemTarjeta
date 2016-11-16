@@ -1,25 +1,20 @@
 <table class="table table-striped">  <thead>
     <tr>
-      <th>NumeroReferencia</th>
-      <th>Puntos</th>
-      <th>Fecha Creacion</th>
-      <th>Fecha Baja</th>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>URL</th>
      </tr>
   </thead>
 
   <tbody>
-    <% tarjets = Tarjetum.where(user_id: user.id) %>
+    <% tiendas = Tienda.where(fecha_baja:nil) %>
 
-<% if tarjets.size  <= 0%>
-<td><%= link_to "Activar Tarjeta",  tarjetum_nueva_tarjeta_path(1), :class =>'btn btn-success', data: { confirm: '¿Seguro que desea activar la tarjeta?'} %></td>
 
- <% end %>
-
- <% tarjets.each do |tarj| %>
-<tr>      <td><%= tarj.numref %></td>
-      <td><%= tarj.puntos %></td>
-      <td><%= tarj.created_at %></td>
-      <td><%= tarj.fecha_baja %></td>
+ <% tiendas.each do |shop| %>
+<tr>      <td><%= shop.numref %></td>
+      <td><%= shop.nombre %></td>
+      <td><%= shop.descripcion %></td>
+      <td><%= shop.url %></td>
       <td>
     </td></tr>
 
