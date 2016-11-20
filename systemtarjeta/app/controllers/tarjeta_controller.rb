@@ -21,7 +21,25 @@ class TarjetaController < ApplicationController
           end
       end
 
+      def activar_user
+          @usuario = User.find_by(id: current_user.id)
+          @usuario.fecha_baja = nil
+            @usuario.save
+            respond_to do |format|
+              format.html { redirect_to :back, notice: "El usuario fue activado correctamente" }
+              format.json { head :no_content }
+            end
+        end
 
+        def des_user
+            @usuario = User.find_by(id: current_user.id)
+            @usuario.fecha_baja =  Time.zone.today
+              @usuario.save
+              respond_to do |format|
+                format.html { redirect_to :back, notice: "El usuario fue dado de baja correctamente" }
+                format.json { head :no_content }
+              end
+          end
 
   # GET /tarjeta
   # GET /tarjeta.json

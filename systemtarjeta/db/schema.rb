@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161110164710) do
+ActiveRecord::Schema.define(version: 20161120181812) do
 
   create_table "almacenbajas", force: :cascade do |t|
     t.integer  "motivo_id",   limit: 4
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20161110164710) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.date     "fecha_baja"
+    t.string   "photo",      limit: 255
   end
 
   create_table "tabmaestras", force: :cascade do |t|
@@ -90,6 +91,7 @@ ActiveRecord::Schema.define(version: 20161110164710) do
     t.date     "fecha_baja"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.string   "photo",       limit: 255
   end
 
   create_table "users", force: :cascade do |t|
@@ -110,6 +112,7 @@ ActiveRecord::Schema.define(version: 20161110164710) do
     t.string   "telefono",               limit: 255
     t.string   "direccion",              limit: 255
     t.string   "rol",                    limit: 255
+    t.date     "fecha_baja"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

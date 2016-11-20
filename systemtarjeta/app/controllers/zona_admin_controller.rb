@@ -1,0 +1,2 @@
+class ZonaAdminController < ApplicationController
+end

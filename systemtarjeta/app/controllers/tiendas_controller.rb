@@ -54,9 +54,10 @@ class TiendasController < ApplicationController
   # DELETE /tiendas/1
   # DELETE /tiendas/1.json
   def destroy
-    @tienda.destroy
+    @tienda.fecha_baja = Time.zone.today
+    @tienda.save
     respond_to do |format|
-      format.html { redirect_to tiendas_url, notice: 'Tienda was successfully destroyed.' }
+      format.html { redirect_to tiendas_url, notice: 'Tienda fue dada de baja con éxito' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +70,6 @@ class TiendasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tienda_params
-      params.require(:tienda).permit(:nombre, :descripcion, :url, :fecha_baja)
+      params.require(:tienda).permit(:nombre, :descripcion, :url, :fecha_baja, :photo)
     end
 end

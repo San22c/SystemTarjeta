@@ -1,8 +1,33 @@
-<p id="notice"><%= notice %></p>
 
+<nav class="navbar   navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Points4All</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="active"><%= link_to "Home", root_path %> </li>
+      <% if current_user %>
+      <% if current_user.rol == 'admin'%>
+      <li class="active"><%= link_to "Panel Admin", zona_admin_index_path %> </li>
+
+      <%end%>
+    <li>   <%= link_to 'Welcome ' + current_user.nombre, inicio_usuario_index_path %></li>
+    <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+<% else %>
+  <li>  <%= link_to 'Login', new_user_session_path %></li>
+<% end %>
+
+
+<li><a href="#">Contacto</a></li>
+<li><a href="#">Ayuda</a></li>
+    </ul>
+  </div>
+</nav>
+<p id="notice"><%= notice %></p>
+<div class="container">
 <h1>Listing Premios</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Concepto</th>
@@ -19,15 +44,23 @@
         <td><%= premio.concepto %></td>
         <td><%= premio.stock %></td>
         <td><%= premio.puntos %></td>
-        <td><%= premio.fecha_baja %></td>
-        <td><%= link_to 'Show', premio %></td>
-        <td><%= link_to 'Edit', edit_premio_path(premio) %></td>
-        <td><%= link_to 'Destroy', premio, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user %>
+        <% if current_user.rol == 'admin'%>
+        <td><%= link_to 'Ver', premio %></td>
+        <td><%= link_to 'Editar', edit_premio_path(premio) %></td>
+        <td><%= link_to 'Dar de baja', premio, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+        <%end%>
+        <%end%>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<% if current_user %>
+<% if current_user.rol == 'admin'%>
 <%= link_to 'New Premio', new_premio_path %>
+<%end%>
+<%end%>
+</div>
+<%= image_tag 'indexFondo111.png' %>

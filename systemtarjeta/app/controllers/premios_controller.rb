@@ -54,9 +54,9 @@ class PremiosController < ApplicationController
   # DELETE /premios/1
   # DELETE /premios/1.json
   def destroy
-    @premio.destroy
-    respond_to do |format|
-      format.html { redirect_to premios_url, notice: 'Premio was successfully destroyed.' }
+    @premio.fecha_baja = Time.zone.today
+    @premio.save    respond_to do |format|
+      format.html { redirect_to premios_url, notice: 'Premio fue dado de baja con éxito' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class PremiosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def premio_params
-      params.require(:premio).permit(:concepto, :stock, :puntos, :fecha_baja)
+      params.require(:premio).permit(:concepto, :stock, :puntos, :fecha_baja, :photo)
     end
 end

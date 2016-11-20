@@ -29,18 +29,25 @@
 </style>
 </head>
 
-<nav class="navbar navbar-default">
+<nav class="navbar   navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">RegalosPorqueSi!</a>
+      <a class="navbar-brand" href="#">Points4All</a>
     </div>
     <ul class="nav navbar-nav navbar-right">
       <li class="active"><%= link_to "Home", root_path %> </li>
-      <li><% if current_user %>
-    Welcome <%= link_to current_user.email, edit_user_registration_path %></li> <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+      <% if current_user %>
+      <% if current_user.rol == 'admin'%>
+      <li class="active"><%= link_to "Panel Admin", zona_admin_index_path %> </li>
+
+      <%end%>
+    <li>   <%= link_to 'Welcome ' + current_user.nombre, inicio_usuario_index_path %></li>
+    <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
 <% else %>
   <li>  <%= link_to 'Login', new_user_session_path %></li>
 <% end %>
+
+
 <li><a href="#">Contacto</a></li>
 <li><a href="#">Ayuda</a></li>
     </ul>
@@ -48,6 +55,8 @@
 </nav>
 <div class="container">
 <h1>Hola <%= current_user.nombre %></h1>
+<h2>-- Zona Admin --</h2>
+
 <h2>¿Que quieres hacer?</h2>
 
 <div class="panel-group" id="accordion">
@@ -55,56 +64,49 @@
     <div class="panel-heading">
       <h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-        Mi Perfil</a>
+        Altas</a>
       </h4>
     </div>
     <div id="collapse1" class="panel-collapse collapse in">
       <div class="panel-body">
-        <div class="container">
-          <table class="table table-striped">
-            <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Apellidos</th>
-              <th>Direccion</th>
-              <th>Telefono</th>
-              <th>Email</th>
+        <%= link_to 'Tienda', new_tienda_path, :class =>'btn btn-success' %>
+        <%= link_to 'Premio', new_premio_path, :class =>'btn btn-success' %>
 
-              <th colspan="3"></th>
-            </tr>
-          </thead>
-
-    <tbody>
-
-        <tr>
-          <td><%= current_user.nombre %></td>
-          <td><%= current_user.apellidos %></td>
-          <td><%= current_user.direccion %></td>
-          <td><%= current_user.telefono %></td>
-          <td><%= current_user.email %></td>
-
-        </tr>
-
-    </tbody>
-  </table>
-  <%= link_to 'Editar perfil', edit_user_registration_path %>
-      </div>
+       </div>
     </div>
   </div>
-  </div>
-  <div class="panel panel-default">
+
+   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-       Mi tarjeta</a>
+       Report -  Mantenimiento</a>
       </h4>
     </div>
     <div id="collapse2" class="panel-collapse collapse">
       <div class="panel-body">
-        <%= render "tarjeta/index", user: current_user %>
+         <%= link_to "Movimientos",  tiendas_path, :class =>'btn btn-success' %>
+         <%= link_to "Tiendas",  tiendas_path, :class =>'btn btn-success'  %>
+        <%= link_to "premios",  premios_path, :class =>'btn btn-success'  %>
+
        </div>
     </div>
   </div>
+
+  <div class="panel panel-default">
+   <div class="panel-heading">
+     <h4 class="panel-title">
+       <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+      Usuarios</a>
+     </h4>
+   </div>
+   <div id="collapse3" class="panel-collapse collapse">
+     <div class="panel-body">
+       <%= render "tarjeta/index", user: current_user %>
+      </div>
+   </div>
+ </div>
+
 
       </div>
    </div>

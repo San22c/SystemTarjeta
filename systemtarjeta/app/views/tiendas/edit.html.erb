@@ -1,6 +1,46 @@
-<h1>Editing Tienda</h1>
 
-<%= render 'form' %>
+<nav class="navbar   navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Points4All</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="active"><%= link_to "Home", root_path %> </li>
+      <% if current_user %>
+      <% if current_user.rol == 'admin'%>
+      <li class="active"><%= link_to "Panel Admin", zona_admin_index_path %> </li>
+
+      <%end%>
+    <li>   <%= link_to 'Welcome ' + current_user.nombre, inicio_usuario_index_path %></li>
+    <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+<% else %>
+  <li>  <%= link_to 'Login', new_user_session_path %></li>
+<% end %>
+
+
+<li><a href="#">Contacto</a></li>
+<li><a href="#">Ayuda</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+
+<h1>Editar Tienda</h1>
+<div class="panel-group">
+<div class="panel panel-primary">
+    <div class="panel-heading">Editar Tienda</div>
+    <div class="panel-body">
+
+<%= render 'formedit' %>
 
 <%= link_to 'Show', @tienda %> |
 <%= link_to 'Back', tiendas_path %>
+
+
+</div>
+</div>
+
+</div>
+</div>
+<%= image_tag 'indexFondo111.png' %>

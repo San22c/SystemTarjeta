@@ -29,18 +29,25 @@
 </style>
 </head>
 
-<nav class="navbar navbar-default">
+<nav class="navbar   navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">RegalosPorqueSi!</a>
+      <a class="navbar-brand" href="#">Points4All</a>
     </div>
     <ul class="nav navbar-nav navbar-right">
       <li class="active"><%= link_to "Home", root_path %> </li>
-      <li><% if current_user %>
-    Welcome <%= link_to current_user.email, edit_user_registration_path %></li> <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+      <% if current_user %>
+      <% if current_user.rol == 'admin'%>
+      <li class="active"><%= link_to "Panel Admin", zona_admin_index_path %> </li>
+
+      <%end%>
+    <li>   <%= link_to 'Welcome ' + current_user.nombre, inicio_usuario_index_path %></li>
+    <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
 <% else %>
   <li>  <%= link_to 'Login', new_user_session_path %></li>
 <% end %>
+
+
 <li><a href="#">Contacto</a></li>
 <li><a href="#">Ayuda</a></li>
     </ul>
@@ -88,6 +95,12 @@
     </tbody>
   </table>
   <%= link_to 'Editar perfil', edit_user_registration_path %>
+  <% if current_user.fecha_baja != nil%>
+  <%= link_to "Activar",  tarjetum_activaruser_path , :class =>'btn btn-success', data: { confirm: '¿Seguro que desea activar el usuario?'} %></td>
+<%else%>
+<%= link_to "Dar de baja",  tarjetum_des_user_path , :class =>'btn btn-success', data: { confirm: '¿Seguro que desea dar de baja el usuario?'} %></td>
+
+<%end%>
       </div>
     </div>
   </div>
@@ -105,6 +118,24 @@
        </div>
     </div>
   </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+       Mis Movimientos</a>
+      </h4>
+    </div>
+    <div id="collapse3" class="panel-collapse collapse">
+      <div class="panel-body">
+        <%= render "movimientos/index", user: current_user %>
+
+       </div>
+    </div>
+  </div>
+
+
+
 
       </div>
    </div>

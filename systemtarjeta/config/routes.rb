@@ -5,9 +5,17 @@ Rails.application.routes.draw do
   resources :tiendas
   get 'welcome_sys_t/index'
   get 'inicio_usuario/index'
+  get 'zona_admin/index'
+  get 'tarjetas/index'
+  get 'premios/index'
+  get 'tiendas/index'
+
   resources :premios
   resources :tarjeta do
   get :activar
+  get :activar_user
+  get :des_user
+
   get :nueva_tarjeta
 
 end

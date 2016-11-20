@@ -30,7 +30,7 @@ gem 'autoprefixer-rails'
 # gem 'unicorn'
 gem 'devise'
 gem 'ransack'
-
+gem 'sprockets', '~> 3.6.3'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

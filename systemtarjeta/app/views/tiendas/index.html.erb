@@ -1,8 +1,34 @@
+
+<nav class="navbar   navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Points4All</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="active"><%= link_to "Home", root_path %> </li>
+      <% if current_user %>
+      <% if current_user.rol == 'admin'%>
+      <li class="active"><%= link_to "Panel Admin", zona_admin_index_path %> </li>
+
+      <%end%>
+    <li>   <%= link_to 'Welcome ' + current_user.nombre, inicio_usuario_index_path %></li>
+    <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+<% else %>
+  <li>  <%= link_to 'Login', new_user_session_path %></li>
+<% end %>
+
+
+<li><a href="#">Contacto</a></li>
+<li><a href="#">Ayuda</a></li>
+    </ul>
+  </div>
+</nav>
 <p id="notice"><%= notice %></p>
+<div class="container">
 
 <h1>Listing Tiendas</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Nombre</th>
@@ -16,18 +42,27 @@
   <tbody>
     <% @tiendas.each do |tienda| %>
       <tr>
+        <td><%= image_tag tienda.photo%></td>
         <td><%= tienda.nombre %></td>
         <td><%= tienda.descripcion %></td>
         <td><%= tienda.url %></td>
-        <td><%= tienda.fecha_baja %></td>
-        <td><%= link_to 'Show', tienda %></td>
-        <td><%= link_to 'Edit', edit_tienda_path(tienda) %></td>
-        <td><%= link_to 'Destroy', tienda, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         <% if current_user %>
+        <% if current_user.rol == 'admin'%>
+        <td><%= link_to 'Ver', tienda %></td>
+        <td><%= link_to 'Editar', edit_tienda_path(tienda) %></td>
+        <td><%= link_to 'Dar de baja', tienda, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+        <%end%>
+        <%end%>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<% if current_user %>
+<% if current_user.rol == 'admin'%>
 <%= link_to 'New Tienda', new_tienda_path %>
+<%end%>
+<%end%>
+</div>
+<%= image_tag 'indexFondo111.png' %>
