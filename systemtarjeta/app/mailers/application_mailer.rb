@@ -4,9 +4,9 @@ class ApplicationMailer < ActionMailer::Base
 
    def sample_email(user)
      @user = user
-      
       mail(to: @user.email, subject: 'Alta usuario')
    end
+ 
 
 
 end

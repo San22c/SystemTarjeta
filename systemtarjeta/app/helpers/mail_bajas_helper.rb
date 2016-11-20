@@ -1,0 +1,2 @@
+module MailBajasHelper
+end

@@ -87,7 +87,7 @@
       <div class="panel-body">
          <%= link_to "Movimientos",  tiendas_path, :class =>'btn btn-success' %>
          <%= link_to "Tiendas",  tiendas_path, :class =>'btn btn-success'  %>
-        <%= link_to "premios",  premios_path, :class =>'btn btn-success'  %>
+        <%= link_to "Premios",  premios_path, :class =>'btn btn-success'  %>
 
        </div>
     </div>
@@ -96,14 +96,42 @@
   <div class="panel panel-default">
    <div class="panel-heading">
      <h4 class="panel-title">
-       <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+       <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
       Usuarios</a>
      </h4>
    </div>
    <div id="collapse3" class="panel-collapse collapse">
      <div class="panel-body">
-       <%= render "tarjeta/index", user: current_user %>
-      </div>
+       <table class="table table-striped">
+         <thead>
+         <tr>
+           <th>Nombre</th>
+           <th>Apellidos</th>
+           <th>Direccion</th>
+           <th>Telefono</th>
+           <th>Email</th>
+
+           <th colspan="3"></th>
+         </tr>
+       </thead>
+
+ <tbody>
+   <% usuarios = User.all%>
+   <% usuarios.each do |usuario|%>
+     <tr>
+
+       <td><%= usuario.nombre %></td>
+       <td><%= usuario.apellidos %></td>
+       <td><%= usuario.direccion %></td>
+       <td><%= usuario.telefono %></td>
+       <td><%= usuario.email %></td>
+
+     </tr>
+     <% end %>
+
+ </tbody>
+</table>
+       </div>
    </div>
  </div>
 

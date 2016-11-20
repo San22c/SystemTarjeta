@@ -1,5 +1,6 @@
 <table class="table table-striped">  <thead>
     <tr>
+      <th>Imagen</th>
       <th>Nombre</th>
       <th>Descripción</th>
       <th>URL</th>
@@ -11,7 +12,8 @@
 
 
  <% tiendas.each do |shop| %>
-<tr>      <td><%= shop.numref %></td>
+<tr>          <td><%= image_tag tienda.photo%></td>
+
       <td><%= shop.nombre %></td>
       <td><%= shop.descripcion %></td>
       <td><%= shop.url %></td>

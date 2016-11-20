@@ -1,9 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Movimientos</h1>
-
-<table>
-  <thead>
+ 
+<table class="table table-striped">
+    <thead>
     <tr>
       <th>User</th>
       <th>Tarjetum</th>
@@ -15,21 +14,20 @@
   </thead>
 
   <tbody>
-    <% @movimientos.where(user_id: current_user.id) do |movimiento| %>
+      <%  Movimiento.where(user_id: user.id) do |movimiento| %>
       <tr>
         <td><%= movimiento.user %></td>
         <td><%= movimiento.tarjetum %></td>
         <td><%= movimiento.importe %></td>
         <td><%= movimiento.puntos %></td>
         <td><%= movimiento.premio %></td>
-        <td><%= link_to 'Show', movimiento %></td>
-        <td><%= link_to 'Edit', edit_movimiento_path(movimiento) %></td>
-        <td><%= link_to 'Destroy', movimiento, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+
       </tr>
+
     <% end %>
+
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Movimiento', new_movimiento_path %>

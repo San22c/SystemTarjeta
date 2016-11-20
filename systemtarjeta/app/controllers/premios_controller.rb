@@ -28,7 +28,7 @@ class PremiosController < ApplicationController
 
     respond_to do |format|
       if @premio.save
-        format.html { redirect_to @premio, notice: 'Premio was successfully created.' }
+        format.html { redirect_to zona_admin_index_path, notice: 'Premio was successfully created.' }
         format.json { render :show, status: :created, location: @premio }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class PremiosController < ApplicationController
   def update
     respond_to do |format|
       if @premio.update(premio_params)
-        format.html { redirect_to @premio, notice: 'Premio was successfully updated.' }
+        format.html { redirect_to zona_admin_index_path, notice: 'Premio was successfully updated.' }
         format.json { render :show, status: :ok, location: @premio }
       else
         format.html { render :edit }

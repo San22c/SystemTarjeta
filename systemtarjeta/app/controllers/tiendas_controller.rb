@@ -28,7 +28,7 @@ class TiendasController < ApplicationController
 
     respond_to do |format|
       if @tienda.save
-        format.html { redirect_to @tienda, notice: 'Tienda was successfully created.' }
+        format.html { redirect_to zona_admin_index_path, notice: 'Tienda was successfully created.' }
         format.json { render :show, status: :created, location: @tienda }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class TiendasController < ApplicationController
   def update
     respond_to do |format|
       if @tienda.update(tienda_params)
-        format.html { redirect_to @tienda, notice: 'Tienda was successfully updated.' }
+        format.html { redirect_to zona_admin_index_path, notice: 'Tienda was successfully updated.' }
         format.json { render :show, status: :ok, location: @tienda }
       else
         format.html { render :edit }

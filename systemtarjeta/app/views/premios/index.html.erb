@@ -25,29 +25,45 @@
 </nav>
 <p id="notice"><%= notice %></p>
 <div class="container">
-<h1>Listing Premios</h1>
+<h1> Premios</h1>
 
 <table class="table table-striped">
   <thead>
     <tr>
+      <th>Imagen</th>
+
       <th>Concepto</th>
       <th>Stock</th>
       <th>Puntos</th>
-      <th>Fecha baja</th>
-      <th colspan="3"></th>
+      <% if current_user %>
+     <% if current_user.rol == 'admin'%>
+       <th>Fecha baja</th>
+      <%end%>
+      <%end%>      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
+    <% if current_user %>
+    <% if current_user.rol != 'admin'%>
+      <% @premios = Premio.where(fecha_baja:nil) %>
+      <%else%>
+      <%@premios = Premio.all%>
+      <%end%>
+<%end%>
     <% @premios.each do |premio| %>
       <tr>
+        <td><%= image_tag premio.photo, :class => "img-responsive"%></td>
         <td><%= premio.concepto %></td>
         <td><%= premio.stock %></td>
         <td><%= premio.puntos %></td>
+        <td><%= link_to 'Visitar', premio %></td>
+
         <% if current_user %>
         <% if current_user.rol == 'admin'%>
-        <td><%= link_to 'Ver', premio %></td>
-        <td><%= link_to 'Editar', edit_premio_path(premio) %></td>
+        <td><%= premio.fecha_baja %></td>
+
+         <td><%= link_to 'Editar', edit_premio_path(premio) %></td>
         <td><%= link_to 'Dar de baja', premio, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
         <%end%>
         <%end%>
@@ -63,4 +79,3 @@
 <%end%>
 <%end%>
 </div>
-<%= image_tag 'indexFondo111.png' %>

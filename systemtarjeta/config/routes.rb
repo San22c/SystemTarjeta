@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :almacenbajas
   devise_for :users
   resources :tiendas
+  resources :mail_bajas do
+    get :enviobaja
+  end
   get 'welcome_sys_t/index'
   get 'inicio_usuario/index'
   get 'zona_admin/index'
